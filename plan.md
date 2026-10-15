@@ -43,6 +43,8 @@ Ovde beležimo svaku narednu izmenu: datum, šta je traženo i šta je promenjen
 
 - 15. 10. 2026. — prva radna verzija, bez naknadnih korekcija.
 
-## Objava
+## Objava — 15. 10. 2026.
 
-- GitHub i Vercel link upisuju se ovde čim objava prođe.
+- Kod: https://github.com/ivanmicic/alex-gym-golubac
+- Sajt za pregled: https://alex-gym-golubac.vercel.app
+- Objava je javna. Vlasnica može da otvori link bez naloga.
