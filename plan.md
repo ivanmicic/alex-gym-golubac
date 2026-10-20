@@ -18,7 +18,7 @@ Ovaj fajl pamti šta je urađeno i šta tek treba. Svaka naredna korekcija ide u
 - Zakazivanje: posetilac bira uslugu, dan i vreme (13:00–20:30, na 30 minuta). Poruka se otvara u WhatsApp-u. Sajt ništa ne čuva. Termin važi tek kad teretana odgovori.
 - Status otvoreno/zatvoreno računa se prema vremenu u Beogradu.
 - Logo očišćen od ivica sa snimka ekrana i stavljen u `assets/logo.png`.
-- Galerija je spremna za fotografije. Fajlovi `assets/gallery/01`–`06` (jpg, jpeg, png ili webp) sami se pojavljuju na sajtu.
+- Galerija prikazuje fotografije iz `assets/gallery`. Vidi korekciju od 20. 10. 2026.
 
 ## Pretpostavke — čeka se potvrda
 
@@ -30,7 +30,7 @@ Ovaj fajl pamti šta je urađeno i šta tek treba. Svaka naredna korekcija ide u
 ## Šta još treba od vlasnice
 
 1. Potvrda radnog vremena po danima.
-2. Fotografije sale za galeriju.
+2. Fotografije sale su ubačene (14 fajlova). Ostaje provera fotografije 9 na ekranu vlasnice.
 3. Cenovnik, ako cene treba da stoje na sajtu.
 4. Raspored grupnih treninga, ako postoji.
 5. Da li na sajt ide i lični Instagram.
@@ -42,8 +42,11 @@ Ovaj fajl pamti šta je urađeno i šta tek treba. Svaka naredna korekcija ide u
 Ovde beležimo svaku narednu izmenu: datum, šta je traženo i šta je promenjeno.
 
 - 15. 10. 2026. — prva radna verzija, bez naknadnih korekcija.
+- 20. 10. 2026. — Galerija. U `assets/gallery` je 14 fotografija, `01.png`–`14.png`. Mesta su proširena sa 6 na 14: četiri kolone na širokom ekranu, tri na užem, dve na telefonu. Klik otvara veći prikaz, strelice menjaju sliku, natpis prati SR / EN.
+- 20. 10. 2026. — Primedba: fotografija 9 se ne vidi na ekranu vlasnice. Fajl `09.png` jeste na stranici (potisak nogama, natpis 120 kg) i u proveri se učitava. Stoji prva u trećem redu. Ostaje da se pogleda na njenom ekranu.
+- 20. 10. 2026. — Zakazivanje. Forma je skupljena da cela stane na ekran: dani se listaju unutar kartice, termini ostaju u kartici, na nižem ekranu je raspored gušći. Levi i desni deo dele širinu na pola. Prozor mape ide naniže do dna forme. Na telefonu je jedan stub, mapa ostaje uobičajene visine.
 
-## Objava — 15. 10. 2026.
+## Objava — 20. 10. 2026.
 
 - Kod: https://github.com/ivanmicic/alex-gym-golubac
 - Sajt za pregled: https://alex-gym-golubac.vercel.app

@@ -72,13 +72,24 @@ const EN = {
   a8: "Instagram is @_alexgym__ and the Facebook page is ALEX GYM. For a quick answer, WhatsApp, Viber, and the phone are fastest.",
   "gal.kicker": "Gallery",
   "gal.title": "From the gym",
-  "gal.lead": "Training, the gym floor, and the pace at ALEX GYM.",
-  g1: "The gym",
-  g2: "Group",
-  g3: "1-to-1",
-  g4: "Solo",
-  g5: "Golubac",
-  g6: "13:00–21:00",
+  "gal.lead": "Training, the gym floor, and the pace at ALEX GYM. Click a photo to enlarge it.",
+  g1: "Group session",
+  g2: "Group session",
+  g3: "Training",
+  g4: "Group session",
+  g5: "The gym",
+  g6: "The gym",
+  g7: "Wall sign",
+  g8: "Back to school",
+  g9: "Leg press",
+  g10: "Training",
+  g11: "View from the gym",
+  g12: "Nutrition",
+  g13: "Recovery",
+  g14: "From the fridge",
+  "gal.close": "Close",
+  "gal.prev": "Previous photo",
+  "gal.next": "Next photo",
   "book.kicker": "Booking",
   "book.title": "Book a session",
   "book.lead": "Pick a service, a day, and a time. The message goes to the gym's WhatsApp. The booking is confirmed when we reply.",
@@ -156,6 +167,7 @@ const DAY_NAME = {
 const SR = { text: new Map(), placeholder: new Map(), aria: new Map(), title: new Map() };
 const state = { lang: "sr", service: "", date: "", time: "" };
 let lastMessage = "";
+let photoIndex = 0;
 
 function t(key, ...args) {
   const pack = STR[state.lang] || STR.sr;
@@ -292,6 +304,8 @@ function applyLanguage(lang) {
     const cap = tile.querySelector("figcaption");
     if (img && cap) img.alt = cap.textContent.trim();
   });
+  const lightbox = document.getElementById("lightbox");
+  if (lightbox && lightbox.open) showPhoto(photoIndex);
 
   labelToggle();
   renderStatus();
@@ -492,6 +506,50 @@ function validate() {
   return errors.length === 0;
 }
 
+function photoTiles() {
+  return [...document.querySelectorAll(".tile.has-photo")];
+}
+
+function showPhoto(index) {
+  const tiles = photoTiles();
+  if (!tiles.length) return;
+  photoIndex = (index + tiles.length) % tiles.length;
+  const tile = tiles[photoIndex];
+  const source = tile.querySelector("img");
+  const cap = tile.querySelector("figcaption");
+  const label = cap ? cap.textContent.trim() : "ALEX GYM";
+  const full = document.getElementById("lightbox-img");
+  full.src = source.currentSrc || source.src;
+  full.alt = label;
+  document.getElementById("lightbox-cap").textContent = label;
+  const dialog = document.getElementById("lightbox");
+  if (!dialog.open) dialog.showModal();
+}
+
+function bindGallery() {
+  const grid = document.querySelector(".bento");
+  const dialog = document.getElementById("lightbox");
+  if (!grid || !dialog) return;
+
+  grid.addEventListener("click", (event) => {
+    const tile = event.target.closest(".tile.has-photo");
+    if (!tile) return;
+    showPhoto(photoTiles().indexOf(tile));
+  });
+
+  document.getElementById("lightbox-close").addEventListener("click", () => dialog.close());
+  document.getElementById("lightbox-prev").addEventListener("click", () => showPhoto(photoIndex - 1));
+  document.getElementById("lightbox-next").addEventListener("click", () => showPhoto(photoIndex + 1));
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (!dialog.open) return;
+    if (event.key === "ArrowLeft") showPhoto(photoIndex - 1);
+    if (event.key === "ArrowRight") showPhoto(photoIndex + 1);
+  });
+}
+
 function probe(url) {
   return new Promise((resolve) => {
     const img = new Image();
@@ -653,6 +711,7 @@ function bind() {
   }, { rootMargin: "-40% 0px -50% 0px" });
   sections.forEach((section) => observer.observe(section));
 
+  bindGallery();
   setInterval(renderStatus, 60000);
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") renderStatus();
